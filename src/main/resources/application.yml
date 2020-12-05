@@ -1,5 +1,5 @@
 #spring.datasource.driver-class-name=org.db.JDBC
-#spring.datasource.url=jdbc:db:E:/Java/demo1/src/main/db/myDb
+#spring.datasource.url=jdbc:sqlite:E:/Java/demo1/src/main/db/myDb
 #spring.datasource.username=root
 #spring.datasource.password=root
 
@@ -18,9 +18,9 @@ spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     # 方式一：  引用外部文件
-    #        url: jdbc:db:D:/eclipse/fieldnote.db
+    #        url: jdbc:sqlite:D:/eclipse/fieldnote.db
     #方式二： 引用项目中的文件
-    url: jdbc:db::resource:static/db/fieldnote
+    url: jdbc:sqlite::resource:static/db/fieldnote
     username:
     password:
 
