@@ -1,7 +1,7 @@
 package com.yun300.fieldnote.controller;
 
 import com.yun300.fieldnote.pojo.model.LoginAccount;
-import com.yun300.fieldnote.pojo.vo.LoginVO;
+import com.yun300.fieldnote.pojo.vo.LoginDTO;
 import com.yun300.fieldnote.service.LoginAccountService;
 import com.yun300.fieldnote.utils.*;
 import io.swagger.annotations.Api;
@@ -32,20 +32,20 @@ public class LoginAccountController {
     }
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    public JsonResult login(@RequestBody LoginVO loginVO) {
+    public JsonResult login(@RequestBody LoginDTO loginVO) {
         LoginAccount userLogin = null;
         if (StringUtils.isEmpty(loginVO.getAccount()) || XssJudgeUtils.isSqlInject(loginVO.getAccount())) {
-            return JsonResultUtil.error(ResultCode.ERROR.getMsg());
+            return JsonResult.error(ResultCode.ERROR.getMsg());
         }
         userLogin = loginAccountService.findByPhone(loginVO.getAccount());
         // //验证用户名或者手机号
         if (userLogin == null) {
-            return JsonResultUtil.error(ResultCode.USER_LOGIN_FAIL.getMsg());
+            return JsonResult.error(ResultCode.USER_LOGIN_FAIL.getMsg());
         }
         // 验证密码
         if (!DigestUtils.md5DigestAsHex(loginVO.getPassword().getBytes()).equals(userLogin.getPassword())) {
-            return JsonResultUtil.error(ResultCode.USER_LOGIN_FAIL.getMsg());
+            return JsonResult.error(ResultCode.USER_LOGIN_FAIL.getMsg());
         }
-        return JsonResultUtil.success(ResultCode.SUCCESS.getMsg());
+        return JsonResult.success(ResultCode.SUCCESS.getMsg());
     }
 }

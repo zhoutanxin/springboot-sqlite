@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class DefaultView implements WebMvcConfigurer {
 	
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("redirect:/");
+		registry.addViewController("/").setViewName("redirect:/doc.html");
 	}
 }
 

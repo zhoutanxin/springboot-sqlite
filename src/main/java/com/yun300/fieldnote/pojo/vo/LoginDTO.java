@@ -7,12 +7,12 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Data
-public class LoginVO {
+public class LoginDTO {
     @ApiModelProperty(value = "登录账号", required = true)
     @NotEmpty
     private String account;
-    @ApiModelProperty(value = "登录密码", required = false)
+    @ApiModelProperty(value = "登录密码", required = true)
     private String password;
-    @ApiModelProperty(value = "验证码", required = false)
+    @ApiModelProperty(value = "验证码")
     private String captcha;
 }
